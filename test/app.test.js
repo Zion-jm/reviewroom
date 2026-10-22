@@ -10,6 +10,20 @@ before(async()=>{db=await openDatabase({path:':memory:'});const {app}=await crea
 after(async()=>{await new Promise(r=>server.close(r));await db.close();});
 function client(){let cookies={};return {async call(path,method='GET',body,extra={}){const r=await fetch(base+'/api'+path,{method,headers:{'Content-Type':'application/json','X-Reviewroom':'1',Cookie:Object.entries(cookies).map(([k,v])=>`${k}=${v}`).join('; '),...extra},...(body===undefined?{}:{body:JSON.stringify(body)})});for(const c of r.headers.getSetCookie()){const [k,v]=c.split(';')[0].split('=');cookies[k]=v;}return {status:r.status,data:await r.json(),headers:r.headers};},cookies:()=>({...cookies})};}
 const a=client(),b=client(),admin=client();let recovery,studentId,attemptId;
+test('explicit memory database ignores production credentials and starts empty',async()=>{
+  const priorUrl=process.env.DATABASE_URL,priorEnv=process.env.NODE_ENV;
+  try{
+    process.env.DATABASE_URL='postgresql://unused:unused@127.0.0.1:1/must-not-connect';
+    process.env.NODE_ENV='production';
+    const isolated=await openDatabase({path:':memory:'});
+    try{assert.equal(isolated.kind,'SQLite (local only)');assert.equal((await isolated.query("SELECT name FROM sqlite_master WHERE type='table'")).rows.length,0);}finally{await isolated.close();}
+    delete process.env.DATABASE_URL;
+    await assert.rejects(()=>openDatabase(),/Production requires DATABASE_URL/);
+  }finally{
+    if(priorUrl===undefined)delete process.env.DATABASE_URL;else process.env.DATABASE_URL=priorUrl;
+    if(priorEnv===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=priorEnv;
+  }
+});
 test('source content is valid and evenly covered',()=>{validateContent(content);assert.equal(content.questions.length,80);for(const l of content.lessons)assert.equal(content.questions.filter(q=>q.lessonId===l.id).length,16);for(let i=0;i<20;i++){const qs=selectQuestions(content,content.lessons.map(l=>l.id),40);assert.equal(new Set(qs.map(q=>q.id)).size,40);for(const l of content.lessons)assert.equal(qs.filter(q=>q.lessonId===l.id).length,8);for(const q of qs){const source=content.questions.find(x=>x.id===q.id);assert.equal(q.options[q.answer],source.options[source.answer]);}}});
 test('invalid imports are rejected',()=>{const c=structuredClone(content);c.questions[0].answer=6;assert.throws(()=>validateContent(c),/Answer/);const d=structuredClone(content);d.assessments[0].count=100;assert.throws(()=>validateContent(d),/enough questions/);});
 test('catalog is public but never includes quiz answer keys',async()=>{const r=await a.call('/catalog');assert.equal(r.status,200);assert.equal(r.data.questions,undefined);assert.equal(r.data.lessons.length,5);assert.match(r.headers.get('content-security-policy'),/script-src 'self'/);});
