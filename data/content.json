@@ -1,0 +1,1804 @@
+{
+  "schemaVersion": 1,
+  "subjects": [
+    {
+      "id": "sysadmin",
+      "title": "System Administration & Maintenance",
+      "code": "SAM",
+      "description": "Understand the systems. Connect the ideas. Be ready for exam day."
+    }
+  ],
+  "lessons": [
+    {
+      "id": "lesson-1",
+      "subjectId": "sysadmin",
+      "title": "Computer hardware",
+      "kicker": "LESSON 01",
+      "source": "Lesson 1 Intro.pptx",
+      "description": "Hardware is the physical equipment in a computer. A microprocessor carries out CPU instructions. The Internet connects networks worldwide; mobile computing supports portable communication; AI performs tasks such as learning, reasoning, and problem solving.",
+      "notes": [
+        {
+          "title": "Hardware fundamentals",
+          "body": "Hardware is the physical equipment in a computer. A microprocessor carries out CPU instructions. The Internet connects networks worldwide; mobile computing supports portable communication; AI performs tasks such as learning, reasoning, and problem solving.",
+          "ref": "Slides 3–11"
+        },
+        {
+          "title": "CPU and motherboard",
+          "body": "The CPU executes instructions, calculations, and logic. Multiple cores allow concurrent work. The motherboard connects the CPU, RAM, storage, and peripherals through buses, slots, and connectors. BIOS/UEFI firmware initializes hardware during startup.",
+          "ref": "Slides 11, 14–15"
+        },
+        {
+          "title": "RAM versus storage",
+          "body": "RAM holds data currently needed by the CPU and is volatile: its contents are lost when power is removed. Storage retains data across shutdowns. More RAM can help multitasking when memory capacity is the bottleneck.",
+          "ref": "Slides 18–19, 26"
+        },
+        {
+          "title": "HDD versus SSD",
+          "body": "An HDD uses spinning magnetic platters. An SSD uses flash memory and has no moving parts. SSDs typically improve startup and file access speeds; HDDs are commonly chosen for capacity at lower cost.",
+          "ref": "Slides 26–27"
+        },
+        {
+          "title": "Power supply",
+          "body": "The PSU converts AC from the wall into low-voltage DC for computer components. Capacity is measured in watts. Choose capacity for the whole system. 80 Plus ratings describe efficiency; modular cabling helps cable management.",
+          "ref": "Slides 31–34"
+        },
+        {
+          "title": "Graphics processing",
+          "body": "The GPU renders images, video, and animation. Integrated graphics handle basic tasks; dedicated graphics cards support demanding work such as gaming, video editing, and 3D rendering.",
+          "ref": "Slides 38–39"
+        },
+        {
+          "title": "Cooling",
+          "body": "Heatsinks absorb and dissipate heat; fans move air. Cooling keeps the CPU, GPU, and other components within safe operating temperatures. Some high-performance systems use liquid cooling.",
+          "ref": "Slides 41–42"
+        },
+        {
+          "title": "Input and output",
+          "body": "Input devices send information into a computer: keyboard, mouse, microphone, and scanner. Output devices present information: monitor, speakers, headphones, and printer.",
+          "ref": "Slide 44"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "Hardware fundamentals",
+          "back": "Hardware is the physical equipment in a computer. A microprocessor carries out CPU instructions. The Internet connects networks worldwide; mobile computing supports portable communication; AI performs tasks such as learning, reasoning, and problem solving.",
+          "ref": "Slides 3–11"
+        },
+        {
+          "front": "CPU and motherboard",
+          "back": "The CPU executes instructions, calculations, and logic. Multiple cores allow concurrent work. The motherboard connects the CPU, RAM, storage, and peripherals through buses, slots, and connectors. BIOS/UEFI firmware initializes hardware during startup.",
+          "ref": "Slides 11, 14–15"
+        },
+        {
+          "front": "RAM versus storage",
+          "back": "RAM holds data currently needed by the CPU and is volatile: its contents are lost when power is removed. Storage retains data across shutdowns. More RAM can help multitasking when memory capacity is the bottleneck.",
+          "ref": "Slides 18–19, 26"
+        },
+        {
+          "front": "HDD versus SSD",
+          "back": "An HDD uses spinning magnetic platters. An SSD uses flash memory and has no moving parts. SSDs typically improve startup and file access speeds; HDDs are commonly chosen for capacity at lower cost.",
+          "ref": "Slides 26–27"
+        },
+        {
+          "front": "Power supply",
+          "back": "The PSU converts AC from the wall into low-voltage DC for computer components. Capacity is measured in watts. Choose capacity for the whole system. 80 Plus ratings describe efficiency; modular cabling helps cable management.",
+          "ref": "Slides 31–34"
+        },
+        {
+          "front": "Graphics processing",
+          "back": "The GPU renders images, video, and animation. Integrated graphics handle basic tasks; dedicated graphics cards support demanding work such as gaming, video editing, and 3D rendering.",
+          "ref": "Slides 38–39"
+        },
+        {
+          "front": "Cooling",
+          "back": "Heatsinks absorb and dissipate heat; fans move air. Cooling keeps the CPU, GPU, and other components within safe operating temperatures. Some high-performance systems use liquid cooling.",
+          "ref": "Slides 41–42"
+        },
+        {
+          "front": "Input and output",
+          "back": "Input devices send information into a computer: keyboard, mouse, microphone, and scanner. Output devices present information: monitor, speakers, headphones, and printer.",
+          "ref": "Slide 44"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "lesson-2",
+      "subjectId": "sysadmin",
+      "title": "Administrator roles",
+      "kicker": "LESSON 02",
+      "source": "Lesson 2  Intro (1).pptx",
+      "description": "System administration keeps computer systems and related services reliable and usable. It combines technical support, efficient resource use, permissions, monitoring, upgrades, and maintenance to meet service-quality goals.",
+      "notes": [
+        {
+          "title": "Purpose of system administration",
+          "body": "System administration keeps computer systems and related services reliable and usable. It combines technical support, efficient resource use, permissions, monitoring, upgrades, and maintenance to meet service-quality goals.",
+          "ref": "Slides 3–5"
+        },
+        {
+          "title": "Database administrator",
+          "body": "A DBA manages database integrity, reliability, access, backup, restoration, and troubleshooting. Useful skills include SQL, operating systems, analysis, organization, communication, and problem solving.",
+          "ref": "Slides 10–15"
+        },
+        {
+          "title": "Network administrator",
+          "body": "A network administrator installs and maintains routers, switches, firewalls, VPNs, and network services. They resolve connectivity issues and protect access. LAN, WAN, VPN, and SAN knowledge supports this role.",
+          "ref": "Slides 17–23"
+        },
+        {
+          "title": "Security administrator",
+          "body": "Security administrators protect systems and sensitive data, establish policies, identify weak points, manage defenses, and respond to intrusions. Identity management controls who can access information; intrusion detection flags suspicious activity.",
+          "ref": "Slides 26–32"
+        },
+        {
+          "title": "Security skills",
+          "body": "Vulnerability assessment examines weaknesses; risk management identifies, evaluates, and addresses threats. Communication, critical thinking, continuous learning, and calm under pressure support effective incident response.",
+          "ref": "Slides 31–32"
+        },
+        {
+          "title": "Web and server administrator",
+          "body": "Web administrators maintain services such as Apache or IIS, manage website deployment and security, maintain site databases, and respond to user support issues. Coding, database, design, project management, and teamwork skills are useful.",
+          "ref": "Slides 34–40"
+        },
+        {
+          "title": "Routine responsibilities",
+          "body": "Administrators inspect systems, back up data, apply updates, configure hardware and software, manage user accounts, answer technical questions, troubleshoot, and keep networks available. Documenting system configuration supports later maintenance.",
+          "ref": "Slides 41–43"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "Purpose of system administration",
+          "back": "System administration keeps computer systems and related services reliable and usable. It combines technical support, efficient resource use, permissions, monitoring, upgrades, and maintenance to meet service-quality goals.",
+          "ref": "Slides 3–5"
+        },
+        {
+          "front": "Database administrator",
+          "back": "A DBA manages database integrity, reliability, access, backup, restoration, and troubleshooting. Useful skills include SQL, operating systems, analysis, organization, communication, and problem solving.",
+          "ref": "Slides 10–15"
+        },
+        {
+          "front": "Network administrator",
+          "back": "A network administrator installs and maintains routers, switches, firewalls, VPNs, and network services. They resolve connectivity issues and protect access. LAN, WAN, VPN, and SAN knowledge supports this role.",
+          "ref": "Slides 17–23"
+        },
+        {
+          "front": "Security administrator",
+          "back": "Security administrators protect systems and sensitive data, establish policies, identify weak points, manage defenses, and respond to intrusions. Identity management controls who can access information; intrusion detection flags suspicious activity.",
+          "ref": "Slides 26–32"
+        },
+        {
+          "front": "Security skills",
+          "back": "Vulnerability assessment examines weaknesses; risk management identifies, evaluates, and addresses threats. Communication, critical thinking, continuous learning, and calm under pressure support effective incident response.",
+          "ref": "Slides 31–32"
+        },
+        {
+          "front": "Web and server administrator",
+          "back": "Web administrators maintain services such as Apache or IIS, manage website deployment and security, maintain site databases, and respond to user support issues. Coding, database, design, project management, and teamwork skills are useful.",
+          "ref": "Slides 34–40"
+        },
+        {
+          "front": "Routine responsibilities",
+          "back": "Administrators inspect systems, back up data, apply updates, configure hardware and software, manage user accounts, answer technical questions, troubleshoot, and keep networks available. Documenting system configuration supports later maintenance.",
+          "ref": "Slides 41–43"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "lesson-3",
+      "subjectId": "sysadmin",
+      "title": "Principles and ethics",
+      "kicker": "LESSON 03",
+      "source": "Lesson 3  Principle of Network and  System Administration (1).pptx",
+      "description": "Network and system administration manages the operation of human–computer systems. The purpose is to help users accomplish work while considering the benefit of the whole community.",
+      "notes": [
+        {
+          "title": "Human–computer systems",
+          "body": "Network and system administration manages the operation of human–computer systems. The purpose is to help users accomplish work while considering the benefit of the whole community.",
+          "ref": "Slides 4–5"
+        },
+        {
+          "title": "Technology in its environment",
+          "body": "Hardware configurations and software configurations serve users. Hardware needs suitable power, temperature, and standards. Administration must account for physical constraints as well as software behavior.",
+          "ref": "Slide 7"
+        },
+        {
+          "title": "The human role",
+          "body": "Effective administration requires patience, understanding, knowledge, and experience. Administrators combine diagnosis, user support, repair, and prevention while balancing competing needs.",
+          "ref": "Slides 5, 8"
+        },
+        {
+          "title": "Planning and scale",
+          "body": "Challenges include logical network design, upgradeable deployments, selecting services, adequate security, user comfort, error recovery, and keeping knowledge current. Installing an operating system is only one part of the job.",
+          "ref": "Slides 9–10"
+        },
+        {
+          "title": "Interdependence",
+          "body": "Even when responsible only for individual computers, an administrator needs to understand data flow and how one machine affects others. Local changes can influence the wider network community.",
+          "ref": "Slides 11–12"
+        },
+        {
+          "title": "Computer ethics",
+          "body": "Respect others’ work, privacy, resources, and intellectual output. Do not use computers to harm, steal, deceive, or interfere. Use resources with authorization, honor software licensing, and consider the social consequences of programs.",
+          "ref": "Slides 13–17"
+        },
+        {
+          "title": "Bugs and unexpected behavior",
+          "body": "Systems can exhibit bugs or unplanned interactions. Causes include poor quality control, operating system problems, incompatible software, and attacks. Administrators need evidence, adaptability, and practical workarounds.",
+          "ref": "Slides 18–20"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "Human–computer systems",
+          "back": "Network and system administration manages the operation of human–computer systems. The purpose is to help users accomplish work while considering the benefit of the whole community.",
+          "ref": "Slides 4–5"
+        },
+        {
+          "front": "Technology in its environment",
+          "back": "Hardware configurations and software configurations serve users. Hardware needs suitable power, temperature, and standards. Administration must account for physical constraints as well as software behavior.",
+          "ref": "Slide 7"
+        },
+        {
+          "front": "The human role",
+          "back": "Effective administration requires patience, understanding, knowledge, and experience. Administrators combine diagnosis, user support, repair, and prevention while balancing competing needs.",
+          "ref": "Slides 5, 8"
+        },
+        {
+          "front": "Planning and scale",
+          "back": "Challenges include logical network design, upgradeable deployments, selecting services, adequate security, user comfort, error recovery, and keeping knowledge current. Installing an operating system is only one part of the job.",
+          "ref": "Slides 9–10"
+        },
+        {
+          "front": "Interdependence",
+          "back": "Even when responsible only for individual computers, an administrator needs to understand data flow and how one machine affects others. Local changes can influence the wider network community.",
+          "ref": "Slides 11–12"
+        },
+        {
+          "front": "Computer ethics",
+          "back": "Respect others’ work, privacy, resources, and intellectual output. Do not use computers to harm, steal, deceive, or interfere. Use resources with authorization, honor software licensing, and consider the social consequences of programs.",
+          "ref": "Slides 13–17"
+        },
+        {
+          "front": "Bugs and unexpected behavior",
+          "back": "Systems can exhibit bugs or unplanned interactions. Causes include poor quality control, operating system problems, incompatible software, and attacks. Administrators need evidence, adaptability, and practical workarounds.",
+          "ref": "Slides 18–20"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "diagnostics",
+      "subjectId": "sysadmin",
+      "title": "Diagnostics, faults & changes",
+      "kicker": "GROUP 02",
+      "source": "DIAGNOSTICS, FAULT AND CHANGE MANAGEMENT - GROUP 2.pdf",
+      "description": "Diagnostics investigates a problem to determine its cause. Identify the symptom, collect information, analyze evidence, identify the cause, apply a solution, and verify the result. A visible symptom can have several possible causes.",
+      "notes": [
+        {
+          "title": "Diagnostics: investigate",
+          "body": "Diagnostics investigates a problem to determine its cause. Identify the symptom, collect information, analyze evidence, identify the cause, apply a solution, and verify the result. A visible symptom can have several possible causes.",
+          "ref": "Pages 3–5"
+        },
+        {
+          "title": "Evidence before action",
+          "body": "Use logs, error messages, monitoring data, network status, performance statistics, configuration records, and user reports. Compare evidence to distinguish the actual cause from plausible alternatives.",
+          "ref": "Pages 6–8"
+        },
+        {
+          "title": "Fault versus failure",
+          "body": "A fault is the underlying defect or condition. A failure is the resulting loss of function or service. Examples of faults include damaged cables, incorrect settings, corrupted data, failed components, or insufficient storage.",
+          "ref": "Page 9"
+        },
+        {
+          "title": "Fault management: restore",
+          "body": "Detect, isolate, diagnose, correct, restore service, and monitor. The goal is normal operation with minimal impact on users. Verify recovery rather than assuming that an attempted fix succeeded.",
+          "ref": "Pages 10–12"
+        },
+        {
+          "title": "Temporary and long-term fixes",
+          "body": "Safely removing unnecessary temporary data can restore a full server. Repeatedly doing so may leave the underlying capacity problem unresolved. Monitoring, storage expansion, or changed data-management practices may be needed.",
+          "ref": "Pages 13–14"
+        },
+        {
+          "title": "Change management: control",
+          "body": "Plan, assess risk and impact, obtain approval, implement, test, and review changes. Prepare backups and a recovery plan. Updates, replacements, database changes, and network configuration changes can introduce unexpected effects.",
+          "ref": "Pages 15–19"
+        },
+        {
+          "title": "Types of change",
+          "body": "Standard changes are routine and follow established procedures. Normal changes require assessment and authorization. Emergency changes address critical situations where waiting for the normal process creates greater risk.",
+          "ref": "Pages 20–22"
+        },
+        {
+          "title": "Verification and the full cycle",
+          "body": "After implementation, test, monitor, document, and review the result. Diagnostics explains the problem; fault management restores operation; change management controls lasting improvements. Remember: investigate → restore → improve → verify.",
+          "ref": "Pages 23–26"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "Diagnostics: investigate",
+          "back": "Diagnostics investigates a problem to determine its cause. Identify the symptom, collect information, analyze evidence, identify the cause, apply a solution, and verify the result. A visible symptom can have several possible causes.",
+          "ref": "Pages 3–5"
+        },
+        {
+          "front": "Evidence before action",
+          "back": "Use logs, error messages, monitoring data, network status, performance statistics, configuration records, and user reports. Compare evidence to distinguish the actual cause from plausible alternatives.",
+          "ref": "Pages 6–8"
+        },
+        {
+          "front": "Fault versus failure",
+          "back": "A fault is the underlying defect or condition. A failure is the resulting loss of function or service. Examples of faults include damaged cables, incorrect settings, corrupted data, failed components, or insufficient storage.",
+          "ref": "Page 9"
+        },
+        {
+          "front": "Fault management: restore",
+          "back": "Detect, isolate, diagnose, correct, restore service, and monitor. The goal is normal operation with minimal impact on users. Verify recovery rather than assuming that an attempted fix succeeded.",
+          "ref": "Pages 10–12"
+        },
+        {
+          "front": "Temporary and long-term fixes",
+          "back": "Safely removing unnecessary temporary data can restore a full server. Repeatedly doing so may leave the underlying capacity problem unresolved. Monitoring, storage expansion, or changed data-management practices may be needed.",
+          "ref": "Pages 13–14"
+        },
+        {
+          "front": "Change management: control",
+          "back": "Plan, assess risk and impact, obtain approval, implement, test, and review changes. Prepare backups and a recovery plan. Updates, replacements, database changes, and network configuration changes can introduce unexpected effects.",
+          "ref": "Pages 15–19"
+        },
+        {
+          "front": "Types of change",
+          "back": "Standard changes are routine and follow established procedures. Normal changes require assessment and authorization. Emergency changes address critical situations where waiting for the normal process creates greater risk.",
+          "ref": "Pages 20–22"
+        },
+        {
+          "front": "Verification and the full cycle",
+          "back": "After implementation, test, monitor, document, and review the result. Diagnostics explains the problem; fault management restores operation; change management controls lasting improvements. Remember: investigate → restore → improve → verify.",
+          "ref": "Pages 23–26"
+        }
+      ],
+      "published": true
+    },
+    {
+      "id": "communities",
+      "subjectId": "sysadmin",
+      "title": "Networked communities",
+      "kicker": "GROUP 03",
+      "source": "G3 Networked Communities_20261022_124805_0000.pdf",
+      "description": "A networked community connects people, devices, computer systems, and digital services so they can communicate, share resources, and collaborate. A university with students, staff, Wi-Fi, servers, and learning platforms is one example.",
+      "notes": [
+        {
+          "title": "A connected community",
+          "body": "A networked community connects people, devices, computer systems, and digital services so they can communicate, share resources, and collaborate. A university with students, staff, Wi-Fi, servers, and learning platforms is one example.",
+          "ref": "Pages 3–5"
+        },
+        {
+          "title": "People, devices, systems, services",
+          "body": "People use resources; devices connect them; systems manage data, accounts, and operations; services provide capabilities such as email and file sharing. Networks allow these elements to exchange information.",
+          "ref": "Page 4"
+        },
+        {
+          "title": "Community types",
+          "body": "Educational networks connect students and learning systems. Business networks connect employees and company resources. Government networks connect offices. Online communities connect participants through platforms; cloud-based communities share internet-accessible applications and data.",
+          "ref": "Pages 6–7"
+        },
+        {
+          "title": "Key characteristics",
+          "body": "Connectivity links devices; communication exchanges information; resource sharing provides common files, printers, applications, or storage; collaboration supports joint work. Management may be centralized or decentralized. Accessibility depends on permissions and security.",
+          "ref": "Pages 8–11"
+        },
+        {
+          "title": "Connection methods",
+          "body": "Ethernet provides wired access. Wi-Fi provides wireless access. Mobile data uses cellular networks such as 4G or 5G. A VPN supports authorized access to a private network. Internet connections link services across locations.",
+          "ref": "Pages 14–15"
+        },
+        {
+          "title": "Challenges",
+          "body": "Downtime, cyberattacks, privacy risks, hardware/software problems, and incorrect settings can disrupt services. Some services depend on connectivity and become unavailable when the network or Internet fails.",
+          "ref": "Pages 16–17"
+        },
+        {
+          "title": "Administrator responsibilities",
+          "body": "Manage accounts and permissions, maintain servers and network services, install and configure systems, monitor performance, troubleshoot, secure data, and perform backup and recovery.",
+          "ref": "Pages 18–20"
+        },
+        {
+          "title": "Match the response to the problem",
+          "body": "Downtime: troubleshoot devices and restore connectivity. Unauthorized access: isolate affected accounts and strengthen controls. Data loss: restore backups. Malware: isolate, investigate, and update. Misconfiguration: identify and correct settings.",
+          "ref": "Pages 21–24"
+        }
+      ],
+      "flashcards": [
+        {
+          "front": "A connected community",
+          "back": "A networked community connects people, devices, computer systems, and digital services so they can communicate, share resources, and collaborate. A university with students, staff, Wi-Fi, servers, and learning platforms is one example.",
+          "ref": "Pages 3–5"
+        },
+        {
+          "front": "People, devices, systems, services",
+          "back": "People use resources; devices connect them; systems manage data, accounts, and operations; services provide capabilities such as email and file sharing. Networks allow these elements to exchange information.",
+          "ref": "Page 4"
+        },
+        {
+          "front": "Community types",
+          "back": "Educational networks connect students and learning systems. Business networks connect employees and company resources. Government networks connect offices. Online communities connect participants through platforms; cloud-based communities share internet-accessible applications and data.",
+          "ref": "Pages 6–7"
+        },
+        {
+          "front": "Key characteristics",
+          "back": "Connectivity links devices; communication exchanges information; resource sharing provides common files, printers, applications, or storage; collaboration supports joint work. Management may be centralized or decentralized. Accessibility depends on permissions and security.",
+          "ref": "Pages 8–11"
+        },
+        {
+          "front": "Connection methods",
+          "back": "Ethernet provides wired access. Wi-Fi provides wireless access. Mobile data uses cellular networks such as 4G or 5G. A VPN supports authorized access to a private network. Internet connections link services across locations.",
+          "ref": "Pages 14–15"
+        },
+        {
+          "front": "Challenges",
+          "back": "Downtime, cyberattacks, privacy risks, hardware/software problems, and incorrect settings can disrupt services. Some services depend on connectivity and become unavailable when the network or Internet fails.",
+          "ref": "Pages 16–17"
+        },
+        {
+          "front": "Administrator responsibilities",
+          "back": "Manage accounts and permissions, maintain servers and network services, install and configure systems, monitor performance, troubleshoot, secure data, and perform backup and recovery.",
+          "ref": "Pages 18–20"
+        },
+        {
+          "front": "Match the response to the problem",
+          "back": "Downtime: troubleshoot devices and restore connectivity. Unauthorized access: isolate affected accounts and strengthen controls. Data loss: restore backups. Malware: isolate, investigate, and update. Misconfiguration: identify and correct settings.",
+          "ref": "Pages 21–24"
+        }
+      ],
+      "published": true
+    }
+  ],
+  "questions": [
+    {
+      "id": "lesson-1-1",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which component executes program instructions and calculations?",
+      "options": [
+        "CPU",
+        "PSU",
+        "Monitor",
+        "SSD"
+      ],
+      "answer": 0,
+      "explanation": "The CPU processes instructions and performs calculations.",
+      "ref": "Slide 11",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-2",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which part connects the CPU, RAM, and other hardware components?",
+      "options": [
+        "Motherboard",
+        "Heatsink",
+        "Speaker",
+        "Power cable"
+      ],
+      "answer": 0,
+      "explanation": "The motherboard provides the main circuit board, buses, and connectors.",
+      "ref": "Slides 14–15",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-3",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What happens to the contents of RAM when power is removed?",
+      "options": [
+        "They are lost",
+        "They become permanent",
+        "They move automatically to the SSD",
+        "They become BIOS settings"
+      ],
+      "answer": 0,
+      "explanation": "RAM is volatile memory and requires power to retain its contents.",
+      "ref": "Slides 18–19",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-4",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which storage technology uses spinning magnetic platters?",
+      "options": [
+        "HDD",
+        "SSD",
+        "RAM",
+        "CPU cache"
+      ],
+      "answer": 0,
+      "explanation": "Hard disk drives read and write data using magnetic platters.",
+      "ref": "Slide 27",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-5",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which device uses flash memory and has no moving mechanical parts?",
+      "options": [
+        "SSD",
+        "HDD",
+        "Case fan",
+        "Optical fan controller"
+      ],
+      "answer": 0,
+      "explanation": "An SSD uses flash memory instead of rotating platters.",
+      "ref": "Slide 27",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-6",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What does a power supply unit convert?",
+      "options": [
+        "AC electricity into low-voltage DC",
+        "DC electricity into sound",
+        "Heat into stored data",
+        "Network signals into AC"
+      ],
+      "answer": 0,
+      "explanation": "The PSU supplies the voltages required by internal components.",
+      "ref": "Slides 31–32",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-7",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What unit describes a PSU’s power capacity?",
+      "options": [
+        "Watts",
+        "Hertz",
+        "Pixels",
+        "Bytes"
+      ],
+      "answer": 0,
+      "explanation": "PSU output capacity is measured in watts.",
+      "ref": "Slides 32–34",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-8",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What does an 80 Plus rating describe?",
+      "options": [
+        "Power supply efficiency",
+        "RAM capacity",
+        "GPU resolution",
+        "Number of CPU cores"
+      ],
+      "answer": 0,
+      "explanation": "The lesson uses 80 Plus grades to describe PSU energy efficiency.",
+      "ref": "Slide 32",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-9",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "A student edits complex 3D scenes. Which component most directly handles rendering the visuals?",
+      "options": [
+        "GPU",
+        "PSU",
+        "Network cable",
+        "Keyboard"
+      ],
+      "answer": 0,
+      "explanation": "The GPU is specialized for images, video, animation, and demanding rendering.",
+      "ref": "Slides 38–39",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-10",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What is the primary role of fans and heatsinks?",
+      "options": [
+        "Keep components within safe temperatures",
+        "Permanently store programs",
+        "Assign network addresses",
+        "Translate mouse clicks into text"
+      ],
+      "answer": 0,
+      "explanation": "Cooling systems remove heat and help prevent overheating.",
+      "ref": "Slides 41–42",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-11",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which device is an input device?",
+      "options": [
+        "Scanner",
+        "Printer",
+        "Monitor",
+        "Speaker"
+      ],
+      "answer": 0,
+      "explanation": "A scanner digitizes physical documents and sends that information into the computer.",
+      "ref": "Slide 44",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-12",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which device produces a physical copy of a document?",
+      "options": [
+        "Printer",
+        "Microphone",
+        "Mouse",
+        "Scanner"
+      ],
+      "answer": 0,
+      "explanation": "A printer is an output device that produces hard copies.",
+      "ref": "Slide 44",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-13",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Why is application data loaded into RAM while a program runs?",
+      "options": [
+        "The CPU can access active data quickly",
+        "RAM retains data without power",
+        "RAM replaces the PSU",
+        "RAM permanently archives every change"
+      ],
+      "answer": 0,
+      "explanation": "RAM offers fast access for currently used data.",
+      "ref": "Slides 18–19",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-14",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "What is the role of BIOS/UEFI during startup?",
+      "options": [
+        "Initialize hardware and support booting",
+        "Store every user document",
+        "Cool the processor",
+        "Provide Internet service"
+      ],
+      "answer": 0,
+      "explanation": "The motherboard contains firmware used for hardware initialization and low-level startup.",
+      "ref": "Slides 14–15",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-15",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "A desktop needs faster boot and file access. Which replacement most directly targets those tasks?",
+      "options": [
+        "Replace its HDD with an SSD",
+        "Replace its mouse with a scanner",
+        "Add a louder speaker",
+        "Remove the heatsink"
+      ],
+      "answer": 0,
+      "explanation": "The lesson identifies reduced boot and file access times as SSD benefits.",
+      "ref": "Slide 27",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-1-16",
+      "lessonId": "lesson-1",
+      "topic": "Hardware fundamentals",
+      "prompt": "Which description best matches mobile computing?",
+      "options": [
+        "Using portable devices to transmit data without a fixed physical connection",
+        "Using only wired desktop computers",
+        "Saving files only to magnetic disks",
+        "Running a computer without an operating system"
+      ],
+      "answer": 0,
+      "explanation": "Mobile computing supports portable data, voice, and video communication.",
+      "ref": "Slide 6",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-1",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "What is the central purpose of system administration?",
+      "options": [
+        "Keep systems and services reliable and usable",
+        "Design only promotional graphics",
+        "Sell computer peripherals",
+        "Replace all users with automation"
+      ],
+      "answer": 0,
+      "explanation": "System administration supports reliable operation, users, and service quality.",
+      "ref": "Slide 3",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-2",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Who primarily manages database integrity, backups, and restoration?",
+      "options": [
+        "Database administrator",
+        "Graphic designer",
+        "Network cable supplier",
+        "Payroll clerk"
+      ],
+      "answer": 0,
+      "explanation": "These are core DBA responsibilities.",
+      "ref": "Slides 10–11",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-3",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Who primarily configures routers, switches, and VPNs?",
+      "options": [
+        "Network administrator",
+        "Content proofreader",
+        "Payroll administrator",
+        "Video editor"
+      ],
+      "answer": 0,
+      "explanation": "Network administration covers connectivity equipment and network services.",
+      "ref": "Slides 17–18",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-4",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which task belongs to identity management?",
+      "options": [
+        "Authorize the right users to access the right information",
+        "Increase screen brightness",
+        "Replace magnetic disks with paper records",
+        "Choose a website’s font"
+      ],
+      "answer": 0,
+      "explanation": "Identity management controls online identities and access.",
+      "ref": "Slide 32",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-5",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which skill focuses on flagging suspicious system activity?",
+      "options": [
+        "Intrusion detection",
+        "Graphic design",
+        "Document printing",
+        "Cable labeling"
+      ],
+      "answer": 0,
+      "explanation": "Intrusion detection systems help detect and address suspicious activity.",
+      "ref": "Slide 32",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-6",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which administrator maintains Apache or IIS web services?",
+      "options": [
+        "Web/server administrator",
+        "Facilities administrator",
+        "Payroll administrator",
+        "Warehouse administrator"
+      ],
+      "answer": 0,
+      "explanation": "The lesson identifies Apache and IIS as web server services.",
+      "ref": "Slide 34",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-7",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "An employee cannot reach a shared service because of a router configuration. Which role is most directly involved?",
+      "options": [
+        "Network administrator",
+        "Marketing manager",
+        "Audio engineer",
+        "Office receptionist"
+      ],
+      "answer": 0,
+      "explanation": "Network administrators troubleshoot network connectivity and equipment.",
+      "ref": "Slides 17–18",
+      "difficulty": "application"
+    },
+    {
+      "id": "lesson-2-8",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which is a soft skill useful for a database administrator?",
+      "options": [
+        "Communication",
+        "SQL syntax",
+        "Operating system configuration",
+        "Database backup commands"
+      ],
+      "answer": 0,
+      "explanation": "Communication supports teamwork and explaining technical needs to others.",
+      "ref": "Slide 14",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-9",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Why should a system administrator document the system setup?",
+      "options": [
+        "To support understanding and future maintenance",
+        "To eliminate the need for backups",
+        "To remove all security controls",
+        "To make every account an administrator"
+      ],
+      "answer": 0,
+      "explanation": "Documenting the setup is an explicit system administration responsibility.",
+      "ref": "Slide 43",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-10",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which action is a routine system administration responsibility?",
+      "options": [
+        "Creating and modifying user accounts",
+        "Approving unrelated bank loans",
+        "Producing television broadcasts",
+        "Repairing road surfaces"
+      ],
+      "answer": 0,
+      "explanation": "Account and permission management is part of system administration.",
+      "ref": "Slides 4, 42",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-11",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "What does risk management involve in security administration?",
+      "options": [
+        "Identify, evaluate, and address threats",
+        "Ignore all alerts",
+        "Guarantee that no software has bugs",
+        "Replace every firewall with a switch"
+      ],
+      "answer": 0,
+      "explanation": "Risk management assesses threats and selects appropriate responses.",
+      "ref": "Slide 32",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-12",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which professional habit helps a security administrator handle changing threats?",
+      "options": [
+        "Continuous learning",
+        "Avoiding all updates",
+        "Ignoring unfamiliar activity",
+        "Sharing passwords publicly"
+      ],
+      "answer": 0,
+      "explanation": "The lesson emphasizes lifelong learning for security professionals.",
+      "ref": "Slide 31",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-13",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "A website has a deployment, connectivity, or functionality issue. Which role commonly handles its help desk request?",
+      "options": [
+        "Web administrator",
+        "Mechanical engineer",
+        "Sales representative",
+        "Travel agent"
+      ],
+      "answer": 0,
+      "explanation": "Web administrators investigate website support requests and implement solutions.",
+      "ref": "Slides 35–38",
+      "difficulty": "application"
+    },
+    {
+      "id": "lesson-2-14",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "What is a DBA expected to do after data loss when a usable backup exists?",
+      "options": [
+        "Restore the database",
+        "Delete all remaining backups",
+        "Disable all access logging permanently",
+        "Replace the monitor"
+      ],
+      "answer": 0,
+      "explanation": "Backup and restoration are DBA responsibilities.",
+      "ref": "Slide 11",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-15",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Why are communication and teamwork useful to network administrators?",
+      "options": [
+        "They coordinate problems and solutions with other people",
+        "They make network hardware unnecessary",
+        "They guarantee infinite bandwidth",
+        "They replace all technical knowledge"
+      ],
+      "answer": 0,
+      "explanation": "Network administrators work with teams and users to keep systems available.",
+      "ref": "Slide 23",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-2-16",
+      "lessonId": "lesson-2",
+      "topic": "Purpose of system administration",
+      "prompt": "Which role develops security policies and helps respond to unwanted intrusions?",
+      "options": [
+        "Security administrator",
+        "Print technician",
+        "Content translator",
+        "Office caterer"
+      ],
+      "answer": 0,
+      "explanation": "Security administrators establish protections and respond to threats.",
+      "ref": "Slides 29–30",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-1",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Network and system administration is concerned with which kind of operational management?",
+      "options": [
+        "Human–computer systems",
+        "Only office furniture",
+        "Only printed textbooks",
+        "Only financial accounts"
+      ],
+      "answer": 0,
+      "explanation": "The lesson defines it as operational management of human–computer systems.",
+      "ref": "Slide 4",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-2",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Whose interests should an administrator consider beyond an individual user’s request?",
+      "options": [
+        "The wider network community",
+        "Only the loudest user",
+        "Only the hardware vendor",
+        "No one else"
+      ],
+      "answer": 0,
+      "explanation": "Administration should serve the community rather than just a few selfish needs.",
+      "ref": "Slides 4, 12",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-3",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which physical requirement matters when deploying computer hardware?",
+      "options": [
+        "Suitable power and temperature",
+        "A public social media account",
+        "Unlimited printer ink",
+        "A video editing subscription"
+      ],
+      "answer": 0,
+      "explanation": "Hardware operates under physical power, climate, and compatibility constraints.",
+      "ref": "Slide 7",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-4",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which set of qualities supports the human side of administration?",
+      "options": [
+        "Patience, understanding, knowledge, and experience",
+        "Impatience, secrecy, and guesswork",
+        "Only speed and physical strength",
+        "Avoidance of all communication"
+      ],
+      "answer": 0,
+      "explanation": "These four qualities are explicitly highlighted in the lesson.",
+      "ref": "Slide 8",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-5",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Why should a large machine deployment be designed with upgrades in mind?",
+      "options": [
+        "To make future maintenance and expansion easier",
+        "To prevent all users from working",
+        "To remove the need for power",
+        "To make all systems incompatible"
+      ],
+      "answer": 0,
+      "explanation": "Easily upgraded deployments are a listed administration challenge.",
+      "ref": "Slide 9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-6",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which statement best describes the scope of system administration?",
+      "options": [
+        "Plan and maintain systems so people can do useful work",
+        "Install an OS once and never revisit it",
+        "Only replace keyboards",
+        "Only buy hardware"
+      ],
+      "answer": 0,
+      "explanation": "Administration includes planning, design, support, security, and ongoing operations.",
+      "ref": "Slides 5, 9–10",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-7",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Why understand data flow between machines?",
+      "options": [
+        "One machine’s behavior can affect other machines",
+        "Each computer is always completely isolated",
+        "Cables determine user passwords",
+        "Data never crosses a network"
+      ],
+      "answer": 0,
+      "explanation": "The lesson emphasizes understanding interdependence across systems.",
+      "ref": "Slide 11",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-8",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "An administrator reads another person’s private files without a work-related authorization. Which ethical principle is violated?",
+      "options": [
+        "Respect for others’ files and privacy",
+        "Improving cooling efficiency",
+        "Selecting storage capacity",
+        "Using multiple processor cores"
+      ],
+      "answer": 0,
+      "explanation": "The ethics material says not to snoop in other people’s files.",
+      "ref": "Slide 14",
+      "difficulty": "application"
+    },
+    {
+      "id": "lesson-3-9",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Using another person’s computing resources without permission violates which principle?",
+      "options": [
+        "Use resources only with authorization",
+        "Always maximize monitor resolution",
+        "Replace all storage every month",
+        "Install only one application"
+      ],
+      "answer": 0,
+      "explanation": "Authorization is explicitly required by the ethics material.",
+      "ref": "Slide 16",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-10",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "What should a developer consider beyond whether a program runs?",
+      "options": [
+        "Its social consequences",
+        "Only its file size",
+        "Only the keyboard color",
+        "Whether it uses every CPU core"
+      ],
+      "answer": 0,
+      "explanation": "The ethics material calls for considering a program’s social consequences.",
+      "ref": "Slide 17",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-11",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which behavior respects intellectual output?",
+      "options": [
+        "Acknowledge and respect other people’s work",
+        "Claim another person’s work as your own",
+        "Copy restricted software without a license",
+        "Delete the original author’s files"
+      ],
+      "answer": 0,
+      "explanation": "The ethics material prohibits appropriating others’ intellectual output.",
+      "ref": "Slide 16",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-12",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Two installed applications interfere with each other. Which listed source of problems does this illustrate?",
+      "options": [
+        "Incompatible software interactions",
+        "A guaranteed motherboard failure",
+        "A printer paper shortage",
+        "An unavoidable loss of all data"
+      ],
+      "answer": 0,
+      "explanation": "Clashes between incompatible packages can cause unexpected behavior.",
+      "ref": "Slide 20",
+      "difficulty": "application"
+    },
+    {
+      "id": "lesson-3-13",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which is a listed challenge for a system administrator?",
+      "options": [
+        "Keeping technical knowledge current",
+        "Preventing all users from communicating",
+        "Ignoring needed services",
+        "Avoiding security planning"
+      ],
+      "answer": 0,
+      "explanation": "The lesson highlights the continually increasing amount of technical knowledge.",
+      "ref": "Slide 9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-14",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "What is the ethical aim of an administrator’s work for users?",
+      "options": [
+        "Enable them to produce useful work",
+        "Make routine tasks intentionally harder",
+        "Give every user unrestricted access to all files",
+        "Prioritize personal curiosity over privacy"
+      ],
+      "answer": 0,
+      "explanation": "The administrator should empower users while considering the greater community.",
+      "ref": "Slide 12",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-15",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Why might administrators need practical workarounds?",
+      "options": [
+        "Software can contain bugs and unplanned behavior",
+        "All systems are perfectly predictable",
+        "Users never encounter errors",
+        "Workarounds remove the need for investigation"
+      ],
+      "answer": 0,
+      "explanation": "The lesson recognizes bugs and emergent behavior in operating systems and programs.",
+      "ref": "Slides 19–20",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "lesson-3-16",
+      "lessonId": "lesson-3",
+      "topic": "Human–computer systems",
+      "prompt": "Which action best follows the ethics principle of consideration and respect?",
+      "options": [
+        "Avoid disrupting another person’s computer work",
+        "Delete a teammate’s files as a joke",
+        "Use someone else’s account without consent",
+        "Publish false information about a classmate"
+      ],
+      "answer": 0,
+      "explanation": "Respect includes not harming others or interfering with their work.",
+      "ref": "Slides 14–17",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-1",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "What is the primary purpose of diagnostics?",
+      "options": [
+        "Determine the cause using evidence",
+        "Approve every purchase",
+        "Replace all hardware immediately",
+        "Hide error messages"
+      ],
+      "answer": 0,
+      "explanation": "Diagnostics investigates symptoms and evidence to identify the responsible condition.",
+      "ref": "Page 3",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-2",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Which is the first step in the diagnostic process shown in the lesson?",
+      "options": [
+        "Identify the problem",
+        "Apply a random solution",
+        "Delete all logs",
+        "Approve an unrelated change"
+      ],
+      "answer": 0,
+      "explanation": "The sequence begins with problem identification, followed by information gathering.",
+      "ref": "Pages 4–5",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-3",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Which information is useful during diagnosis?",
+      "options": [
+        "System logs and user reports",
+        "Only the color of the server case",
+        "Only a guess made before investigation",
+        "Only unrelated social media posts"
+      ],
+      "answer": 0,
+      "explanation": "Logs, errors, monitoring, configuration, and user reports provide evidence.",
+      "ref": "Pages 6–7",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-4",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "A website is unavailable because its database storage is full. Which is the underlying fault?",
+      "options": [
+        "Insufficient database storage",
+        "The visible unavailable page itself",
+        "The user opening a browser",
+        "The website’s logo"
+      ],
+      "answer": 0,
+      "explanation": "The storage condition causes the loss of service.",
+      "ref": "Pages 8–9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-5",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "What is the difference between a fault and a failure?",
+      "options": [
+        "A fault is the cause or defect; a failure is the resulting loss of function",
+        "A fault is always harmless; a failure is always hardware",
+        "They only describe printer problems",
+        "A failure always happens before any fault exists"
+      ],
+      "answer": 0,
+      "explanation": "The lesson distinguishes an underlying condition from its service consequence.",
+      "ref": "Page 9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-6",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "What is the main purpose of fault management?",
+      "options": [
+        "Restore normal operation while minimizing user impact",
+        "Add features without testing",
+        "Hide problems from monitoring",
+        "Approve all requests automatically"
+      ],
+      "answer": 0,
+      "explanation": "Fault management detects and corrects faults and verifies normal service.",
+      "ref": "Page 10",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-7",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "After correcting a fault, what should the team do?",
+      "options": [
+        "Verify recovery and monitor the service",
+        "Assume success and delete all evidence",
+        "Disable monitoring permanently",
+        "Stop documenting the system"
+      ],
+      "answer": 0,
+      "explanation": "Corrective action must be followed by verification and monitoring.",
+      "ref": "Pages 10–11",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-8",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Storage fills up repeatedly. Which action is most clearly a longer-term response?",
+      "options": [
+        "Assess storage expansion and data-management practices",
+        "Delete a few temporary files each time without investigation",
+        "Restart repeatedly without checking capacity",
+        "Change the desktop wallpaper"
+      ],
+      "answer": 0,
+      "explanation": "A lasting response addresses recurring causes and capacity rather than only symptoms.",
+      "ref": "Pages 13–14",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-9",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "What is change management?",
+      "options": [
+        "A controlled process for assessing and implementing IT modifications",
+        "Any unrecorded edit to a server",
+        "Only replacing passwords",
+        "Only detecting damaged cables"
+      ],
+      "answer": 0,
+      "explanation": "It includes planning, assessment, approval, implementation, and review.",
+      "ref": "Page 15",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-10",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Before expanding a university database, which preparation is appropriate?",
+      "options": [
+        "Assess impact, back up data, obtain approval, and prepare recovery",
+        "Change it immediately without a plan",
+        "Remove all backups",
+        "Disable user accounts permanently"
+      ],
+      "answer": 0,
+      "explanation": "The source example describes controlled preparation for a storage expansion.",
+      "ref": "Page 19",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-11",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Which change follows a routine, well-understood established procedure?",
+      "options": [
+        "Standard change",
+        "Emergency change",
+        "Uncontrolled change",
+        "Unknown change"
+      ],
+      "answer": 0,
+      "explanation": "Standard changes are routine and follow established procedures.",
+      "ref": "Page 20",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-12",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Which change requires assessment and authorization before implementation?",
+      "options": [
+        "Normal change",
+        "Unrecorded change",
+        "Accidental change",
+        "Random change"
+      ],
+      "answer": 0,
+      "explanation": "The lesson defines a normal change by assessment and authorization.",
+      "ref": "Page 21",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-13",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "A critical threat makes waiting for the normal process riskier. Which category applies?",
+      "options": [
+        "Emergency change",
+        "Standard office supply request",
+        "Routine content review",
+        "Unrelated maintenance"
+      ],
+      "answer": 0,
+      "explanation": "Emergency changes address urgent critical situations.",
+      "ref": "Page 22",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-14",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Does completing a technical modification prove that a change succeeded?",
+      "options": [
+        "No; test and monitor the intended and unexpected effects",
+        "Yes; execution alone always proves success",
+        "Yes; user reports are never relevant",
+        "Only if all logs are removed"
+      ],
+      "answer": 0,
+      "explanation": "Verification establishes whether the intended result was achieved without unintended effects.",
+      "ref": "Page 23",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-15",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "Which sequence summarizes the combined IT response cycle?",
+      "options": [
+        "Investigate → restore → improve → verify",
+        "Guess → hide → repeat → forget",
+        "Approve → delete → ignore → restart",
+        "Replace → purchase → advertise → stop"
+      ],
+      "answer": 0,
+      "explanation": "Diagnostics, fault management, and controlled change work as a continuous cycle.",
+      "ref": "Page 26",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "diagnostics-16",
+      "lessonId": "diagnostics",
+      "topic": "Diagnostics: investigate",
+      "prompt": "A portal is slow, but network checks look normal. What is the best next response?",
+      "options": [
+        "Investigate server and storage evidence",
+        "Conclude that all systems are healthy",
+        "Replace every network cable immediately",
+        "Ignore the users’ reports"
+      ],
+      "answer": 0,
+      "explanation": "The case study shows that a visible network-like symptom may originate in server storage.",
+      "ref": "Page 12",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-1",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "What is a networked community?",
+      "options": [
+        "Connected people, devices, systems, and services that share and collaborate",
+        "Only one disconnected computer",
+        "Only a social media password",
+        "A collection of unrelated paper records"
+      ],
+      "answer": 0,
+      "explanation": "A networked community combines people and technical resources through a network.",
+      "ref": "Page 3",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-2",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which element provides capabilities such as email and file sharing?",
+      "options": [
+        "Services",
+        "Only power cables",
+        "Only computer cases",
+        "Only monitors"
+      ],
+      "answer": 0,
+      "explanation": "Services provide shared capabilities and resources to network users.",
+      "ref": "Page 4",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-3",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "A university connects students, faculty, laboratories, and learning platforms. Which type is this?",
+      "options": [
+        "Educational network",
+        "An isolated workstation",
+        "Only a gaming controller",
+        "An offline filing cabinet"
+      ],
+      "answer": 0,
+      "explanation": "Educational networks connect learners, teachers, labs, and learning systems.",
+      "ref": "Pages 5–6",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-4",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which type connects employees, departments, and company resources?",
+      "options": [
+        "Business network",
+        "Only an individual personal notebook",
+        "A cooling system",
+        "A standalone calculator"
+      ],
+      "answer": 0,
+      "explanation": "Business networks connect organizational people and resources.",
+      "ref": "Page 6",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-5",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Sharing one network printer among several users illustrates which characteristic?",
+      "options": [
+        "Resource sharing",
+        "Hardware isolation",
+        "Power conversion",
+        "Storage deletion"
+      ],
+      "answer": 0,
+      "explanation": "Printers, files, applications, and storage can be shared across a network.",
+      "ref": "Page 9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-6",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Students in different locations edit a project together. Which characteristic is demonstrated?",
+      "options": [
+        "Collaboration",
+        "Power regulation",
+        "Disk formatting",
+        "CPU cooling"
+      ],
+      "answer": 0,
+      "explanation": "Collaboration lets users work together across locations.",
+      "ref": "Page 9",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-7",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Must every networked community use centralized management?",
+      "options": [
+        "No; management may be centralized or decentralized",
+        "Yes; only one management structure exists",
+        "Yes; all devices must be identical",
+        "No; networks cannot be managed at all"
+      ],
+      "answer": 0,
+      "explanation": "The management structure depends on the organization.",
+      "ref": "Page 10",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-8",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "What governs whether a user can access shared information?",
+      "options": [
+        "Permissions and security settings",
+        "Only the device color",
+        "Only the monitor size",
+        "Only the number of keys on a keyboard"
+      ],
+      "answer": 0,
+      "explanation": "Accessibility is for authorized users under the network’s permissions.",
+      "ref": "Page 10",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-9",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which connection method uses Ethernet cables?",
+      "options": [
+        "Wired connection",
+        "Mobile data",
+        "Wi-Fi",
+        "Bluetooth audio output"
+      ],
+      "answer": 0,
+      "explanation": "The source identifies Ethernet as wired network access.",
+      "ref": "Page 14",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-10",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which connection method uses cellular networks such as 4G and 5G?",
+      "options": [
+        "Mobile data",
+        "Ethernet cable",
+        "Local USB storage",
+        "Monitor cable"
+      ],
+      "answer": 0,
+      "explanation": "Mobile data provides access through cellular networks.",
+      "ref": "Page 14",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-11",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "What does a VPN support in the lesson?",
+      "options": [
+        "Secure authorized access to a private network",
+        "Unlimited storage without a server",
+        "Automatic removal of every threat",
+        "Replacement of every user account"
+      ],
+      "answer": 0,
+      "explanation": "A VPN enables authorized access to a private network.",
+      "ref": "Page 15",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-12",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "What is a possible consequence of network downtime?",
+      "options": [
+        "Users lose access to systems or services",
+        "RAM becomes permanent storage",
+        "All files automatically duplicate",
+        "Processors no longer need power"
+      ],
+      "answer": 0,
+      "explanation": "Downtime can interrupt access to shared services.",
+      "ref": "Page 16",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-13",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which response best matches data loss when backups are available?",
+      "options": [
+        "Restore files and systems from backups",
+        "Disable every monitor",
+        "Replace the keyboard",
+        "Ignore the affected files"
+      ],
+      "answer": 0,
+      "explanation": "Backup and recovery are the listed response to data loss.",
+      "ref": "Page 21",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-14",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which response best matches unauthorized access?",
+      "options": [
+        "Isolate affected accounts and strengthen access controls",
+        "Give all accounts administrator permissions",
+        "Share credentials more widely",
+        "Turn off all logging forever"
+      ],
+      "answer": 0,
+      "explanation": "Contain the affected accounts and improve controls.",
+      "ref": "Page 21",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-15",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Which response best matches a misconfiguration?",
+      "options": [
+        "Identify and correct incorrect settings",
+        "Assume all hardware must be replaced",
+        "Add a new website logo",
+        "Delete all student accounts"
+      ],
+      "answer": 0,
+      "explanation": "Misconfiguration is addressed by correcting system or network settings.",
+      "ref": "Page 22",
+      "difficulty": "foundation"
+    },
+    {
+      "id": "communities-16",
+      "lessonId": "communities",
+      "topic": "A connected community",
+      "prompt": "Why does a networked community need a system administrator?",
+      "options": [
+        "To keep shared systems accessible, reliable, and secure",
+        "To guarantee that users never need permissions",
+        "To eliminate every physical device",
+        "To prevent all collaboration"
+      ],
+      "answer": 0,
+      "explanation": "Administrators maintain accounts, services, performance, security, and recovery.",
+      "ref": "Pages 18–20",
+      "difficulty": "foundation"
+    }
+  ],
+  "assessments": [
+    {
+      "id": "quiz-1",
+      "subjectId": "sysadmin",
+      "title": "Quiz 1 · Hardware essentials",
+      "type": "quiz",
+      "coverage": [
+        "lesson-1"
+      ],
+      "count": 12,
+      "minutes": 12,
+      "maxAttempts": 0,
+      "published": true,
+      "version": 1
+    },
+    {
+      "id": "quiz-2",
+      "subjectId": "sysadmin",
+      "title": "Quiz 2 · Roles & principles",
+      "type": "quiz",
+      "coverage": [
+        "lesson-2",
+        "lesson-3"
+      ],
+      "count": 20,
+      "minutes": 20,
+      "maxAttempts": 0,
+      "published": true,
+      "version": 1
+    },
+    {
+      "id": "quiz-3",
+      "subjectId": "sysadmin",
+      "title": "Quiz 3 · Connected systems",
+      "type": "quiz",
+      "coverage": [
+        "diagnostics",
+        "communities"
+      ],
+      "count": 20,
+      "minutes": 20,
+      "maxAttempts": 0,
+      "published": true,
+      "version": 1
+    },
+    {
+      "id": "midterm",
+      "subjectId": "sysadmin",
+      "title": "Midterm rehearsal",
+      "type": "midterm",
+      "coverage": [
+        "lesson-1",
+        "lesson-2",
+        "lesson-3",
+        "diagnostics",
+        "communities"
+      ],
+      "count": 40,
+      "minutes": 40,
+      "maxAttempts": 0,
+      "published": true,
+      "version": 1
+    }
+  ]
+}
