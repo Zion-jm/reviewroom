@@ -6,7 +6,7 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 import {openDatabase,migrate} from './db.js';
-import {validateContent,selectQuestions,publicQuestions,publicCatalog,grade,versionContent} from './content.js';
+import {validateContent,selectQuestions,publicQuestions,publicCatalog,grade,versionContent,termBatch,mergeBundled} from './content.js';
 const seed=validateContent(JSON.parse(readFileSync(new URL('../data/content.json',import.meta.url),'utf8')));
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const safeEqual=(a,b)=>timingSafeEqual(Buffer.from(hash(a)),Buffer.from(hash(b)));
@@ -80,20 +80,25 @@ export async function createApp({db,adminPassword=process.env.ADMIN_PASSWORD,ori
   };
   const view=a=>({id:a.id,title:a.title,mode:a.mode,version:a.version,assessmentId:a.assessment_id,startedAt:Number(a.started_at),deadline:Number(a.deadline),serverTime:Date.now(),answers:JSON.parse(a.answers),revision:a.revision,questions:publicQuestions(JSON.parse(a.questions)),result:a.result?JSON.parse(a.result):null,duration:a.duration});
   app.post('/api/attempts',async(req,res)=>{
-    const u=await student(req);const {content}=await catalog();const practice=req.body.mode==='practice';let assessment;
+    const u=await student(req);const {content}=await catalog();const practice=req.body.mode==='practice';let assessment,termSet;
     if(practice){
       const coverage=req.body.coverage;
       if(!Array.isArray(coverage)||!coverage.length||coverage.some(id=>!content.lessons.some(l=>l.id===id&&l.published)))throw error(400,'Choose valid published lessons.');
       const available=content.questions.filter(q=>coverage.includes(q.lessonId)).length;const count=Number(req.body.count??10);
       if(!Number.isInteger(count)||count<1||count>Math.min(available,100))throw error(400,'Choose a question count available in this coverage.');
       assessment={id:'practice',version:1,title:'Personal practice',coverage,count,minutes:0,maxAttempts:0};
+      if(req.body.termBatch!==undefined){
+        if(coverage.length!==1)throw error(400,'Choose one lesson for term practice.');
+        try{termSet=termBatch(content,coverage[0],req.body.termBatch);}catch(e){throw error(400,e.message);}
+        assessment.count=termSet.count;assessment.title=termSet.title;
+      }
     }else{assessment=content.assessments.find(a=>a.id===req.body.assessmentId&&a.published);if(!assessment)throw error(404,'Assessment not found.');}
     const result=await db.transaction(async tx=>{
       if(db.kind==='PostgreSQL')await tx.query('SELECT id FROM rr_students WHERE id=$1 FOR UPDATE',[u.id]);
       const existing=(await tx.query('SELECT * FROM rr_attempts WHERE student_id=$1 AND assessment_id=$2 AND version=$3 AND result IS NULL AND deadline>$4 ORDER BY started_at DESC',[u.id,assessment.id,assessment.version,Date.now()])).rows[0];
       if(existing&&!practice)return existing;
       if(assessment.maxAttempts){const n=(await tx.query('SELECT COUNT(*) AS n FROM rr_attempts WHERE student_id=$1 AND assessment_id=$2 AND version=$3',[u.id,assessment.id,assessment.version])).rows[0].n;if(Number(n)>=assessment.maxAttempts)throw error(409,'You have used all attempts for this assessment version.');}
-      const qs=selectQuestions(content,assessment.coverage,assessment.count);if(!qs.length)throw error(400,'No questions in this coverage yet.');
+      const qs=selectQuestions(termSet?{...content,questions:termSet.questions}:content,assessment.coverage,assessment.count);if(!qs.length)throw error(400,'No questions in this coverage yet.');
       const now=Date.now();const id=randomUUID();const deadline=now+(assessment.minutes||7*24*60)*60000;
       const a={id,student_id:u.id,assessment_id:assessment.id,version:assessment.version,title:assessment.title,mode:practice?'practice':'ranked',questions:JSON.stringify(qs),answers:'{}',started_at:now,deadline,result:null,total:qs.length,revision:0};
       await tx.query('INSERT INTO rr_attempts(id,student_id,assessment_id,version,title,mode,questions,answers,started_at,deadline,total,revision) VALUES($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12)',[id,u.id,a.assessment_id,a.version,a.title,a.mode,a.questions,'{}',now,deadline,qs.length,0]);return a;
@@ -121,6 +126,7 @@ export async function createApp({db,adminPassword=process.env.ADMIN_PASSWORD,ori
   });
   app.post('/api/admin/login',authLimit,async(req,res)=>{if(!adminPassword)throw error(503,'Set ADMIN_PASSWORD on the server to enable administration.');if(typeof req.body.password!=='string'||!safeEqual(req.body.password,adminPassword))throw error(401,'Incorrect administrator password.');await setSession(req,res,null,true);res.json({ok:true});});
   app.get('/api/admin/content',async(req,res)=>{await admin(req);res.json(await catalog());});
+  app.get('/api/admin/bundled-content',async(req,res)=>{await admin(req);const current=await catalog();res.json({content:mergeBundled(current.content,seed),revision:current.revision});});
   app.put('/api/admin/content',async(req,res)=>{
     await admin(req);const current=await catalog();if(req.body.revision!==current.revision)throw error(409,'Content changed in another tab. Reload before editing.');
     let next;try{next=validateContent(versionContent(structuredClone(req.body.content),current.content));}catch(e){throw error(400,e.message);}

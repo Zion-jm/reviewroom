@@ -18,12 +18,21 @@ export function validateContent(c) {
     for(const key of ['notes','flashcards'])if(!Array.isArray(l[key])||l[key].length>500)fail(`Invalid ${key}.`);
     for(const n of l.notes){text(n.title,'note title',200);text(n.body,'note body');text(n.ref,'source reference',200);}
     for(const f of l.flashcards){text(f.front,'flashcard front');text(f.back,'flashcard back');text(f.ref,'source reference',200);}
+    if(l.terms!==undefined){
+      if(!Array.isArray(l.terms)||l.terms.length>500)fail('Invalid terms collection.');
+      const ids=new Set();
+      for(const t of l.terms){
+        if(!t||typeof t.id!=='string'||!/^[a-z0-9][a-z0-9-]{0,79}$/.test(t.id)||ids.has(t.id))fail('Invalid or duplicate term ID.');ids.add(t.id);
+        text(t.term,'term',200);text(t.definition,'term definition',2000);text(t.topic,'term topic',200);text(t.ref,'term reference',200);
+      }
+    }
   }
   for(const q of c.questions){
     if(!lessons.has(q.lessonId))fail('Question references an unknown lesson.');
     text(q.prompt,'question',2000);text(q.explanation,'explanation',4000);text(q.ref,'source reference',200);
     if(!Array.isArray(q.options)||q.options.length!==4||new Set(q.options).size!==4)fail('Questions need four different answer options.');
     q.options.forEach(v=>text(v,'answer option',1000));
+    if(q.termId!==undefined&&!lessons.get(q.lessonId).terms?.some(t=>t.id===q.termId))fail('Question references an unknown term.');
     if(!Number.isInteger(q.answer)||q.answer<0||q.answer>3)fail('Answer must be an index from 0 to 3.');
   }
   for(const a of c.assessments){
@@ -48,7 +57,32 @@ export function selectQuestions(content,coverage,count){
     return {...q,source:l.source,lessonTitle:l.title,options:indices.map(i=>q.options[i]),answer:indices.indexOf(q.answer)};
   });
 }
-export function publicQuestions(qs){return qs.map(({answer,explanation,...q})=>q);}
+export function publicQuestions(qs){return qs.map(({answer,explanation,termId,...q})=>q);}
+
+// A fixed partition lets students deliberately cover every term without random repeats.
+export function termBatch(content,lessonId,batch){
+  const lesson=content.lessons.find(l=>l.id===lessonId&&l.published);
+  if(!lesson||!Number.isInteger(batch)||batch<0)throw new Error('Choose a valid term practice set.');
+  const terms=lesson.terms||[];const selected=terms.slice(batch*20,(batch+1)*20);
+  if(!selected.length)throw new Error('This term practice set is empty.');
+  const questions=selected.map(t=>content.questions.find(q=>q.lessonId===lessonId&&q.termId===t.id));
+  if(questions.some(q=>!q))throw new Error('Some terms do not have practice questions yet.');
+  return {questions,count:questions.length,title:`${lesson.title} · Terms ${batch*20+1}–${batch*20+selected.length}`};
+}
+
+export function mergeBundled(current,bundled){
+  const next=structuredClone(current);
+  for(const key of ['subjects','questions','assessments'])for(const item of bundled[key])if(!next[key].some(x=>x.id===item.id))next[key].push(structuredClone(item));
+  for(const lesson of bundled.lessons){
+    const existing=next.lessons.find(l=>l.id===lesson.id);
+    if(!existing){next.lessons.push(structuredClone(lesson));continue;}
+    for(const [key,id] of [['notes','title'],['flashcards','front'],['terms','id']]){
+      existing[key]??=[];
+      for(const item of lesson[key]||[])if(!existing[key].some(x=>x[id]===item[id]))existing[key].push(structuredClone(item));
+    }
+  }
+  return validateContent(next);
+}
 export function grade(qs,answers){
   const review=qs.map(q=>({...q,selected:answers[q.id]??null,correct:answers[q.id]===q.answer}));
   const score=review.filter(q=>q.correct).length;

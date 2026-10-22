@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {openDatabase} from '../server/db.js';
 import {createApp} from '../server/index.js';
-import {grade,selectQuestions,validateContent,versionContent} from '../server/content.js';
+import {grade,selectQuestions,validateContent,versionContent,termBatch,mergeBundled} from '../server/content.js';
 const content=JSON.parse(readFileSync(new URL('../data/content.json',import.meta.url),'utf8'));
 let db,server,base;
 before(async()=>{db=await openDatabase({path:':memory:'});const {app}=await createApp({db,adminPassword:'test-admin-password-only',production:false});server=app.listen(0,'127.0.0.1');await new Promise(r=>server.once('listening',r));base=`http://127.0.0.1:${server.address().port}`;});
@@ -24,8 +24,8 @@ test('explicit memory database ignores production credentials and starts empty',
     if(priorEnv===undefined)delete process.env.NODE_ENV;else process.env.NODE_ENV=priorEnv;
   }
 });
-test('source content is valid and evenly covered',()=>{validateContent(content);assert.equal(content.questions.length,80);for(const l of content.lessons)assert.equal(content.questions.filter(q=>q.lessonId===l.id).length,16);for(let i=0;i<20;i++){const qs=selectQuestions(content,content.lessons.map(l=>l.id),40);assert.equal(new Set(qs.map(q=>q.id)).size,40);for(const l of content.lessons)assert.equal(qs.filter(q=>q.lessonId===l.id).length,8);for(const q of qs){const source=content.questions.find(x=>x.id===q.id);assert.equal(q.options[q.answer],source.options[source.answer]);}}});
-test('invalid imports are rejected',()=>{const c=structuredClone(content);c.questions[0].answer=6;assert.throws(()=>validateContent(c),/Answer/);const d=structuredClone(content);d.assessments[0].count=100;assert.throws(()=>validateContent(d),/enough questions/);});
+test('source content is valid and evenly covered',()=>{validateContent(content);assert.ok(content.questions.length>400);for(const l of content.lessons)assert.ok(content.questions.filter(q=>q.lessonId===l.id).length>=16);for(let i=0;i<20;i++){const qs=selectQuestions(content,content.lessons.map(l=>l.id),40);assert.equal(new Set(qs.map(q=>q.id)).size,40);for(const l of content.lessons)assert.equal(qs.filter(q=>q.lessonId===l.id).length,8);for(const q of qs){const source=content.questions.find(x=>x.id===q.id);assert.equal(q.options[q.answer],source.options[source.answer]);}}});
+test('invalid imports are rejected',()=>{const c=structuredClone(content);c.questions[0].answer=6;assert.throws(()=>validateContent(c),/Answer/);const d=structuredClone(content);d.questions=d.questions.filter(q=>q.lessonId!=='lesson-1');assert.throws(()=>validateContent(d),/enough questions/);});
 test('catalog is public but never includes quiz answer keys',async()=>{const r=await a.call('/catalog');assert.equal(r.status,200);assert.equal(r.data.questions,undefined);assert.equal(r.data.lessons.length,5);assert.match(r.headers.get('content-security-policy'),/script-src 'self'/);});
 test('profiles persist and recovery credentials stay private',async()=>{const r=await a.call('/profile','POST',{name:'Jamie Test'});assert.equal(r.status,201);recovery=r.data.recoveryCode;studentId=r.data.student.id;assert.match(recovery,/^RR-[A-F0-9]{32}$/);assert.match(r.headers.get('set-cookie'),/HttpOnly/);const me=await a.call('/me');assert.equal(me.data.student.id,studentId);assert.equal(JSON.stringify(me.data).includes(recovery),false);assert.equal((await a.call('/profile','POST',{name:'Duplicate'})).status,409);});
 test('recovery restores same profile on another browser',async()=>{const r=await b.call('/recover','POST',{code:recovery.toLowerCase()});assert.equal(r.status,200);assert.equal(r.data.student.id,studentId);assert.equal((await b.call('/recover','POST',{code:'not-a-code'})).status,401);});
@@ -41,3 +41,25 @@ test('admin endpoints reject students; admin login enables editing',async()=>{as
 test('content changes version affected assessments, preserving existing results',async()=>{const current=(await admin.call('/admin/content')).data;const next=structuredClone(current.content);next.questions[0].explanation+=' Additional explanation.';const r=await admin.call('/admin/content','PUT',{content:next,revision:current.revision});assert.equal(r.status,200);assert.equal(r.data.content.assessments.find(x=>x.id==='quiz-1').version,2);assert.equal(r.data.content.assessments.find(x=>x.id==='quiz-2').version,1);assert.equal((await a.call('/leaderboard?assessment=quiz-1')).data.rows.length,0);assert.equal((await a.call('/attempts/'+attemptId)).data.result.total,12);assert.equal((await admin.call('/admin/content','PUT',{content:next,revision:current.revision})).status,409);});
 test('attempt limits are enforced and active attempts count only once',async()=>{const current=(await admin.call('/admin/content')).data;const next=structuredClone(current.content);next.assessments.push({...next.assessments[0],id:'limited',maxAttempts:1,count:2});await admin.call('/admin/content','PUT',{content:next,revision:current.revision});const r=await a.call('/attempts','POST',{assessmentId:'limited'});assert.equal(r.status,201);assert.equal((await a.call('/attempts','POST',{assessmentId:'limited'})).data.id,r.data.id);await a.call(`/attempts/${r.data.id}/submit`,'POST',{});assert.equal((await a.call('/attempts','POST',{assessmentId:'limited'})).status,409);});
 test('logout revokes session and unauthenticated attempts are denied',async()=>{await b.call('/logout','POST',{});assert.equal((await b.call('/me')).data.student,null);assert.equal((await b.call('/attempts','POST',{assessmentId:'midterm'})).status,401);});
+
+test('every glossary term has a referenced flashcard and question; batches cover all terms exactly once',()=>{
+ for(const l of content.lessons){
+  assert.ok(l.terms.length>20);
+  const ids=[];
+  for(let batch=0;batch<Math.ceil(l.terms.length/20);batch++)ids.push(...termBatch(content,l.id,batch).questions.map(q=>q.termId));
+  assert.equal(new Set(ids).size,l.terms.length);assert.deepEqual(new Set(ids),new Set(l.terms.map(t=>t.id)));
+  for(const t of l.terms){assert.ok(t.ref);assert.ok(l.flashcards.some(f=>f.termId===t.id&&f.back===t.definition));const q=content.questions.find(q=>q.termId===t.id);assert.equal(q.options[q.answer],t.term);}
+ }
+ assert.throws(()=>termBatch(content,'lesson-1',-1));assert.throws(()=>termBatch(content,'lesson-1',999));
+});
+test('bundled expansion is additive and idempotent',()=>{
+ const prior=structuredClone(content);for(const l of prior.lessons){delete l.terms;l.flashcards=l.flashcards.filter(f=>!f.termId);}prior.questions=prior.questions.filter(q=>!q.termId);
+ prior.lessons[0].notes[0].body='Custom edited note';prior.questions[0].explanation='Custom explanation';
+ const merged=mergeBundled(prior,content);assert.equal(merged.questions.length,content.questions.length);assert.equal(merged.lessons[0].notes[0].body,'Custom edited note');assert.equal(merged.questions[0].explanation,'Custom explanation');assert.deepEqual(mergeBundled(merged,content),merged);
+});
+test('term practice selects its requested partition and hides answer mapping',async()=>{
+ const r=await a.call('/attempts','POST',{mode:'practice',coverage:['lesson-1'],count:1,termBatch:1});assert.equal(r.status,201);assert.equal(r.data.questions.length,20);
+ const expected=termBatch(content,'lesson-1',1).questions;assert.deepEqual(new Set(r.data.questions.map(q=>q.id)),new Set(expected.map(q=>q.id)));for(const q of r.data.questions){assert.equal(q.termId,undefined);assert.equal(q.answer,undefined);}
+ assert.equal((await a.call('/attempts','POST',{mode:'practice',coverage:['lesson-1'],count:1,termBatch:999})).status,400);
+ assert.equal((await a.call('/admin/bundled-content')).status,401);assert.equal((await admin.call('/admin/bundled-content')).status,200);
+});

@@ -1,5 +1,21 @@
 # Content guide
 
+## Expanded term coverage
+
+The expanded library has 408 source-linked glossary entries, 446 flashcards, and 488 questions (408 term-identification questions plus the original 80 questions). Entries cover distinct study concepts in their lesson context, so concepts repeated in different lessons can have separate entries. All glossary entries have both a flashcard and a question. The glossary is searchable and offers fixed sets of up to 20 questions; completing every set covers every glossary entry. Regular quizzes and the 40-question midterm sample the bank.
+
+The audit includes readable image labels: motherboard formats, memory generations and formats, storage interfaces, PSU connectors, rear-panel ports, and the networked-community structure diagram. Decorative images, product model names used only as examples, classroom game rules, and individual numeric rows in comparison tables are not treated as separate vocabulary terms. This is comprehensive study-term coverage, not a claim that every word or possible instructor question is included.
+
+Definitions clarify ambiguous slide wording. For example, M.2 is a form factor, SQL Server is a database product, and USB-C is a connector rather than a speed guarantee. Technical clarification references: [Kingston SSD FAQ](https://www.kingston.com/en/ssd/ssd-faq), [USB-IF connector terminology](https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf), and [Intel power-supply guide](https://www.intel.com/content/dam/www/public/us/en/documents/design-guides/resellers-power-supply-design-guide-changes.pdf).
+
+Run `node scripts/build-seed.js` to rebuild the bundled JSON. Keep existing term rows in their original order; append new groups so published term identifiers stay stable.
+
+### Apply to an existing database
+
+After deployment, sign in to **Content studio → Import & edit → Preview bundled update → Back up & apply**. The preview merges missing bundled items into the current library, preserves existing matching items and custom content, and downloads a content backup before saving. Existing student profiles and attempt snapshots remain intact. Affected assessments receive a new version with separate rankings. Redeploying alone does not overwrite database content. Reapplying the same expansion does not duplicate it.
+
+Optional lesson `terms` entries have `id`, `term`, `definition`, `topic`, and `ref`. A vocabulary question uses `termId` to reference its lesson's entry. The server strips this mapping from unanswered attempt responses. Glossary definitions remain public study material.
+
 The initial library is derived from these user-supplied materials:
 
 | Lesson | Source | Coverage used |

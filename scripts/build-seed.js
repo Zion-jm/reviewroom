@@ -1,5 +1,6 @@
 // Authored from the five supplied class materials. No AI service is required at runtime.
 import { writeFileSync, mkdirSync } from 'node:fs';
+import {addTerms} from './term-bank.js';
 const subjectId='sysadmin';
 const lessons=[]; const questions=[];
 function lesson(id,title,kicker,source,sections,rows){
@@ -148,5 +149,6 @@ const assessments=[
 ];
 const content={schemaVersion:1,subjects:[{id:subjectId,title:'System Administration & Maintenance',code:'SAM',description:'Understand the systems. Connect the ideas. Be ready for exam day.'}],lessons,questions,assessments};
 mkdirSync(new URL('../data/',import.meta.url),{recursive:true});
+addTerms(content);
 writeFileSync(new URL('../data/content.json',import.meta.url),JSON.stringify(content,null,2)+'\n');
 console.log(`Prepared ${lessons.length} lessons, ${questions.length} questions, ${lessons.reduce((n,l)=>n+l.flashcards.length,0)} flashcards.`);
