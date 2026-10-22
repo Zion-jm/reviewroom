@@ -7,8 +7,8 @@ A mobile-first study site for a class: reusable subjects and lessons, source-bas
 ## What is included
 
 - Five lessons prepared from the supplied course materials.
-- 38 flashcards and 80 multiple-choice questions, with explanations and source slide/page references.
-- Quiz 1 (hardware, 12 questions), Quiz 2 (roles and principles, 20), Quiz 3 (diagnostics and communities, 20), and a 40-question midterm covering all five lessons.
+- 410 distinct terms with one fixed source-worded question per term, with matching glossary entries, flashcards, and source references.
+- Full-coverage Quiz 1 (134 questions), Quiz 2 (157), Quiz 3 (127), and midterm (410). These are untimed; saved sessions can be resumed for seven days.
 - Custom practice with immediate answer checks; ranked assessments reveal explanations after submission.
 - One question per screen, large answer targets, mobile bottom navigation, responsive notes and rankings.
 - Display-name profiles, persistent HttpOnly sessions, and private recovery codes for returning on another device.
@@ -18,6 +18,10 @@ A mobile-first study site for a class: reusable subjects and lessons, source-bas
 - SQLite for local development only. Production refuses to start without PostgreSQL.
 
 Automatic PDF/PPTX ingestion and AI generation are intentionally deferred. Prepare future materials in chat and import the resulting JSON pack, or use the admin forms. No AI API key is required.
+
+## Apply this content update
+
+After deployment: Content studio → Import & edit → Preview bundled update → Back up & apply. This replaces the old bundled paraphrases while preserving custom additions and past attempts. Affected assessments receive new versions. Redeployment alone does not update Aiven content.
 
 ## Run locally
 

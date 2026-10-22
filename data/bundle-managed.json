@@ -1,0 +1,108 @@
+{
+  "lesson-1": {
+    "notes": [
+      "Hardware fundamentals",
+      "CPU and motherboard",
+      "RAM versus storage",
+      "HDD versus SSD",
+      "Power supply",
+      "Graphics processing",
+      "Cooling",
+      "Input and output"
+    ],
+    "flashcards": [
+      "Hardware fundamentals",
+      "CPU and motherboard",
+      "RAM versus storage",
+      "HDD versus SSD",
+      "Power supply",
+      "Graphics processing",
+      "Cooling",
+      "Input and output"
+    ]
+  },
+  "lesson-2": {
+    "notes": [
+      "Purpose of system administration",
+      "Database administrator",
+      "Network administrator",
+      "Security administrator",
+      "Security skills",
+      "Web and server administrator",
+      "Routine responsibilities"
+    ],
+    "flashcards": [
+      "Purpose of system administration",
+      "Database administrator",
+      "Network administrator",
+      "Security administrator",
+      "Security skills",
+      "Web and server administrator",
+      "Routine responsibilities"
+    ]
+  },
+  "lesson-3": {
+    "notes": [
+      "Human\u2013computer systems",
+      "Technology in its environment",
+      "The human role",
+      "Planning and scale",
+      "Interdependence",
+      "Computer ethics",
+      "Bugs and unexpected behavior"
+    ],
+    "flashcards": [
+      "Human\u2013computer systems",
+      "Technology in its environment",
+      "The human role",
+      "Planning and scale",
+      "Interdependence",
+      "Computer ethics",
+      "Bugs and unexpected behavior"
+    ]
+  },
+  "diagnostics": {
+    "notes": [
+      "Diagnostics: investigate",
+      "Evidence before action",
+      "Fault versus failure",
+      "Fault management: restore",
+      "Temporary and long-term fixes",
+      "Change management: control",
+      "Types of change",
+      "Verification and the full cycle"
+    ],
+    "flashcards": [
+      "Diagnostics: investigate",
+      "Evidence before action",
+      "Fault versus failure",
+      "Fault management: restore",
+      "Temporary and long-term fixes",
+      "Change management: control",
+      "Types of change",
+      "Verification and the full cycle"
+    ]
+  },
+  "communities": {
+    "notes": [
+      "A connected community",
+      "People, devices, systems, services",
+      "Community types",
+      "Key characteristics",
+      "Connection methods",
+      "Challenges",
+      "Administrator responsibilities",
+      "Match the response to the problem"
+    ],
+    "flashcards": [
+      "A connected community",
+      "People, devices, systems, services",
+      "Community types",
+      "Key characteristics",
+      "Connection methods",
+      "Challenges",
+      "Administrator responsibilities",
+      "Match the response to the problem"
+    ]
+  }
+}

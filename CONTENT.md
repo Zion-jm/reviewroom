@@ -1,34 +1,26 @@
 # Content guide
 
-## Expanded term coverage
+## Fixed source wording
 
-The expanded library has 408 source-linked glossary entries, 446 flashcards, and 488 questions (408 term-identification questions plus the original 80 questions). Entries cover distinct study concepts in their lesson context, so concepts repeated in different lessons can have separate entries. All glossary entries have both a flashcard and a question. The glossary is searchable and offers fixed sets of up to 20 questions; completing every set covers every glossary entry. Regular quizzes and the 40-question midterm sample the bank.
+The library contains **410 distinct terms and 410 fixed questions** from the five supplied materials. Each term has one canonical question, reused when the term appears in more than one lesson. Combined quizzes and exams include that question only once. Quiz 1 has 134 questions, Quiz 2 has 157, Quiz 3 has 127, and the midterm has all 410. Bundled assessments are untimed; saved attempts can be resumed for seven days.
 
-The audit includes readable image labels: motherboard formats, memory generations and formats, storage interfaces, PSU connectors, rear-panel ports, and the networked-community structure diagram. Decorative images, product model names used only as examples, classroom game rules, and individual numeric rows in comparison tables are not treated as separate vocabulary terms. This is comprehensive study-term coverage, not a claim that every word or possible instructor question is included.
+Text questions use an original source excerpt with only the answer span (and explicit equivalent names, where necessary) replaced by `_____`. Wording and sentence order are retained. Extraction whitespace is normalized; spaced PDF letters are joined back into words. Source spelling, historical terminology, and source errors are retained rather than silently corrected. Table entries are transcribed as labels and cell values in source order. A diagram-only term uses one fixed image identification question. The browser displays a window onto the unchanged source image without its answer label; it does not generate a new illustration or definition.
 
-Definitions clarify ambiguous slide wording. For example, M.2 is a form factor, SQL Server is a database product, and USB-C is a connector rather than a speed guarantee. Technical clarification references: [Kingston SSD FAQ](https://www.kingston.com/en/ssd/ssd-faq), [USB-IF connector terminology](https://www.usb.org/sites/default/files/usb_type-c_language_product_and_packaging_guidelines_20230320.pdf), and [Intel power-supply guide](https://www.intel.com/content/dam/www/public/us/en/documents/design-guides/resellers-power-supply-design-guide-changes.pdf).
+The reviewer notes contain the source text by page or slide. Glossary entries and flashcard answers quote the same source excerpt used by their question. Original slide/page references remain visible. Generic question instructions and navigation labels are application text, not quotations from the materials.
 
-Run `node scripts/build-seed.js` to rebuild the bundled JSON. Keep existing term rows in their original order; append new groups so published term identifiers stay stable.
+Materials: `Lesson 1 Intro.pptx`, `Lesson 2  Intro (1).pptx`, `Lesson 3  Principle of Network and  System Administration (1).pptx`, `DIAGNOSTICS, FAULT AND CHANGE MANAGEMENT - GROUP 2.pdf`, and `G3 Networked Communities_20261022_124805_0000.pdf`. Readable diagram labels are included. Decorative artwork, example CPU product model names, presenter names, and classroom game instructions are excluded as study terms. Previously inferred terms without a literal source label were replaced with the wording actually used in the source.
 
-### Apply to an existing database
+### Rebuilding and future coverage
 
-After deployment, sign in to **Content studio → Import & edit → Preview bundled update → Back up & apply**. The preview merges missing bundled items into the current library, preserves existing matching items and custom content, and downloads a content backup before saving. Existing student profiles and attempt snapshots remain intact. Affected assessments receive a new version with separate rankings. Redeploying alone does not overwrite database content. Reapplying the same expansion does not duplicate it.
+Run `node scripts/build-seed.js`. `data/source-text.json` holds normalized text and image-label transcriptions. `data/source-terms.json` holds the selected exact excerpts and source image windows. `scripts/build-source.js` validates that each excerpt occurs in its source, merges repeated terms, and produces the single-question bank. Stable term IDs are hashes of the canonical term. Original source images are under `public/source-images/`.
 
-Optional lesson `terms` entries have `id`, `term`, `definition`, `topic`, and `ref`. A vocabulary question uses `termId` to reference its lesson's entry. The server strips this mapping from unanswered attempt responses. Glossary definitions remain public study material.
+An assessment with `selection: "all"` includes every question in its coverage and recalculates its count when content is saved. This is the default for new quizzes, midterms, and finals created in the studio. A question's `lessonIds` lists every lesson in which it is covered; `lessonId` identifies its quoted source. Existing custom questions without `lessonIds` still use their original lesson. Optional short practice sets remain available, and numbered term sets cover every term in groups of up to 20. Randomization changes ordering only, never question wording.
 
-The initial library is derived from these user-supplied materials:
+### Updating an existing database
 
-| Lesson | Source | Coverage used |
-|---|---|---|
-| Computer hardware | `Lesson 1 Intro.pptx` | Hardware, CPU, motherboard, RAM, storage, PSU, GPU, cooling, input/output |
-| Administrator roles | `Lesson 2  Intro (1).pptx` | System, database, network, security, web/server administrators; responsibilities and skills |
-| Principles and ethics | `Lesson 3  Principle of Network and  System Administration (1).pptx` | Human–computer systems, deployment constraints, planning, ethics, interdependence, bugs |
-| Diagnostics, faults & changes | `DIAGNOSTICS, FAULT AND CHANGE MANAGEMENT - GROUP 2.pdf` | Evidence, root causes, faults versus failures, restoration, controlled changes, verification |
-| Networked communities | `G3 Networked Communities_20261022_124805_0000.pdf` | People, devices, systems, services, community types, connectivity, sharing, administrator responses |
+After deployment, sign in to **Content studio → Import & edit → Preview bundled update → Back up & apply**. This replaces the previous bundled paraphrases and questions with the source-worded bundle. Custom additions are preserved, but edits to bundled entries are replaced; a JSON backup downloads before applying. Existing profiles and attempt snapshots are retained. Changed assessments get new versions and separate rankings. Redeployment alone does not change Aiven content. Reapplying the same bundle is idempotent.
 
-Page and slide references are one-based. The reviewer paraphrases the materials and uses their instructional content. Classroom activities, presentation placeholders, decorative slides, and instructions for games are not treated as instructions to the application or as exam facts. Image-only component photographs are not used for visual-identification questions. This is a study aid, not a prediction of the instructor's actual examination.
-
-Each question has four options and a zero-based `answer` index. The application randomizes option order and questions at the start of an attempt. It distributes selected questions across coverage lessons as evenly as the available pools allow. The initial midterm draws eight questions from each of the five lessons.
+Optional lesson `terms` entries have `id`, `term`, `definition` (the original excerpt), `topic`, and `ref`. Vocabulary questions use `termId`; the server removes this answer mapping from unanswered attempt responses. Public glossary content remains available as study material.
 
 ## Content pack format
 
