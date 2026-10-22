@@ -2,7 +2,9 @@ import { mkdirSync, readFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import pg from 'pg';
 export async function openDatabase(options={}) {
-  const url=options.url??process.env.DATABASE_URL;
+  // An explicit in-memory test database must never inherit deployment credentials.
+  const inMemory=options.path===':memory:';
+  const url=inMemory?undefined:(options.url??process.env.DATABASE_URL);
   if(url){
     const connection=new URL(url);
     // Do not allow connection-string SSL options to override certificate validation.
@@ -12,7 +14,7 @@ export async function openDatabase(options={}) {
     const wrap=client=>({query:async(sql,args=[])=>{const r=await client.query(sql,args);return {rows:r.rows,changes:r.rowCount};}});
     return {...wrap(pool),kind:'PostgreSQL',transaction:async fn=>{const c=await pool.connect();try{await c.query('BEGIN');const r=await fn(wrap(c));await c.query('COMMIT');return r;}catch(e){await c.query('ROLLBACK');throw e;}finally{c.release();}},close:()=>pool.end()};
   }
-  if(process.env.NODE_ENV==='production')throw new Error('Production requires DATABASE_URL for Aiven PostgreSQL.');
+  if(process.env.NODE_ENV==='production'&&!inMemory)throw new Error('Production requires DATABASE_URL for Aiven PostgreSQL.');
   const {DatabaseSync}=await import('node:sqlite');
   const path=options.path??resolve('.data/reviewroom.sqlite');
   if(path!==':memory:')mkdirSync(resolve(path,'..'),{recursive:true});
