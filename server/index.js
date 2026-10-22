@@ -6,9 +6,9 @@ import {readFileSync} from 'node:fs';
 import {fileURLToPath,pathToFileURL} from 'node:url';
 import {resolve} from 'node:path';
 import {openDatabase,migrate} from './db.js';
-import {validateContent,selectQuestions,publicQuestions,publicCatalog,grade,versionContent,termBatch,mergeBundled,questionsInCoverage} from './content.js';
+import {restoreInitialDatabase,restoreInitial} from './restore-initial.js';
+import {validateContent,selectQuestions,publicQuestions,publicCatalog,grade,versionContent,termBatch,questionsInCoverage} from './content.js';
 const seed=validateContent(JSON.parse(readFileSync(new URL('../data/content.json',import.meta.url),'utf8')));
-const managed=JSON.parse(readFileSync(new URL('../data/bundle-managed.json',import.meta.url),'utf8'));
 const hash=s=>createHash('sha256').update(s).digest('hex');
 const safeEqual=(a,b)=>timingSafeEqual(Buffer.from(hash(a)),Buffer.from(hash(b)));
 const error=(status,message)=>Object.assign(new Error(message),{status});
@@ -19,6 +19,7 @@ export async function createApp({db,adminPassword=process.env.ADMIN_PASSWORD,ori
   if(adminPassword&&adminPassword.length<16)throw new Error('ADMIN_PASSWORD must contain at least 16 characters.');
   db??=await openDatabase();await migrate(db);
   await db.query('INSERT INTO rr_content(id,revision,body) VALUES($1,$2,$3) ON CONFLICT(id) DO NOTHING',['main',1,JSON.stringify(seed)]);
+  if(await restoreInitialDatabase(db,seed))console.log('Restored initial reviewer; previous content backed up and saved attempts preserved.');
   const app=express();app.disable('x-powered-by');app.set('trust proxy',1);
   app.use(helmet({contentSecurityPolicy:{directives:{defaultSrc:["'self'"],scriptSrc:["'self'"],styleSrc:["'self'"],imgSrc:["'self'",'data:'],connectSrc:["'self'"],fontSrc:["'self'"],objectSrc:["'none'"],frameAncestors:production?["'none'"]:["'self'"],upgradeInsecureRequests:production?[]:null}},strictTransportSecurity:production?undefined:false}));
   app.use('/api',rateLimit({windowMs:60000,limit:240,standardHeaders:'draft-8',legacyHeaders:false,message:{error:'Too many requests. Please wait a moment.'}}));
@@ -127,7 +128,7 @@ export async function createApp({db,adminPassword=process.env.ADMIN_PASSWORD,ori
   });
   app.post('/api/admin/login',authLimit,async(req,res)=>{if(!adminPassword)throw error(503,'Set ADMIN_PASSWORD on the server to enable administration.');if(typeof req.body.password!=='string'||!safeEqual(req.body.password,adminPassword))throw error(401,'Incorrect administrator password.');await setSession(req,res,null,true);res.json({ok:true});});
   app.get('/api/admin/content',async(req,res)=>{await admin(req);res.json(await catalog());});
-  app.get('/api/admin/bundled-content',async(req,res)=>{await admin(req);const current=await catalog();res.json({content:mergeBundled(current.content,seed,managed),revision:current.revision});});
+  app.get('/api/admin/bundled-content',async(req,res)=>{await admin(req);const current=await catalog();res.json({content:restoreInitial(current.content,seed),revision:current.revision});});
   app.put('/api/admin/content',async(req,res)=>{
     await admin(req);const current=await catalog();if(req.body.revision!==current.revision)throw error(409,'Content changed in another tab. Reload before editing.');
     let next;try{next=validateContent(versionContent(structuredClone(req.body.content),current.content));}catch(e){throw error(400,e.message);}

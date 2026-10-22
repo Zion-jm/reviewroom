@@ -80,31 +80,6 @@ export function termBatch(content,lessonId,batch){
   return {questions,count:questions.length,title:`${lesson.title} · Terms ${batch*20+1}–${batch*20+selected.length}`};
 }
 
-export function mergeBundled(current,bundled,managed={}){
-  const next=structuredClone(current);
-  if(bundled.bundleVersion==='source-wording-v1'){
-    const ids=new Set(bundled.lessons.map(l=>l.id));
-    next.questions=next.questions.filter(q=>!ids.has(q.lessonId)||!(/^(lesson-[123]|diagnostics|communities)-(vocab-)?\d+$/.test(q.id)||q.id.startsWith('source-term-')));
-    for(const l of next.lessons){if(!ids.has(l.id))continue;const old=managed[l.id]||{};
-      l.terms=(l.terms||[]).filter(t=>!t.id.startsWith('term-')&&!/^.+-term-\d+$/.test(t.id));
-      l.flashcards=l.flashcards.filter(f=>!f.termId&&!old.flashcards?.includes(f.front));
-      l.notes=l.notes.filter(n=>!old.notes?.includes(n.title)&&!/^Slide \d+$|^Page \d+$/.test(n.title));
-    }
-    next.bundleVersion=bundled.bundleVersion;
-    for(const a of next.assessments){a.selection='all';if(bundled.assessments.some(x=>x.id===a.id))a.minutes=0;}
-  }
-  for(const key of ['subjects','questions','assessments'])for(const item of bundled[key])if(!next[key].some(x=>x.id===item.id))next[key].push(structuredClone(item));
-  for(const lesson of bundled.lessons){
-    const existing=next.lessons.find(l=>l.id===lesson.id);
-    if(!existing){next.lessons.push(structuredClone(lesson));continue;}
-    for(const [key,id] of [['notes','title'],['flashcards','front'],['terms','id']]){
-      existing[key]??=[];
-      for(const item of lesson[key]||[])if(!existing[key].some(x=>x[id]===item[id]))existing[key].push(structuredClone(item));
-    }
-  }
-  for(const a of next.assessments)if(a.selection==='all')a.count=questionsInCoverage(next,a.coverage).length;
-  return validateContent(next);
-}
 export function grade(qs,answers){
   const review=qs.map(q=>({...q,selected:answers[q.id]??null,correct:answers[q.id]===q.answer}));
   const score=review.filter(q=>q.correct).length;
